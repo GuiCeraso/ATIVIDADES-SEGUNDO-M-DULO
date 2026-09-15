@@ -1,0 +1,14 @@
+CREATE TABLE clientes(
+  cpf Varchar(14) PRIMARY KEY,
+  nome TEXT,
+  idade INTEGER,
+  endereço TEXT
+  );
+  INSERT INTO clientes(cpf, nome, idade, endereço)
+  VALUES
+  ('143.686.086-58','Guilherme', '17', 'Rua Doutor Álvaro Camargo, 1266'),
+  ('159.987.019-02', 'Talles', '17', 'Rua dos Bobos, 0'),
+  ('796.645.841-03', 'João', '17', 'Pé de Feijão, 10'),
+  ('986.659.351-01','Roger', '17', 'Casa Branca, 1'),
+  ('123.658.463-18','Bárbara', '18', 'Museu do Louvre, 1');
+  SELECT * FROM Clientes
