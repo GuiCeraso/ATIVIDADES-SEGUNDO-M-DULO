@@ -1,0 +1,60 @@
+CREATE TABLE Utilizadores (
+    id_utilizadores INT PRIMARY KEY,
+    nome_utilizador VARCHAR(50),
+    email VARCHAR(100),
+    data_adesao DATE
+);
+
+INSERT INTO Utilizadores
+    (id_utilizadores, nome_utilizador, email, data_adesao)
+VALUES
+    (0, 'Guilherme', 'guilhermeceraso@hotmail.com', '2026-02-02'),
+    (1, 'Reinaldo', 'reinaldofrancisco@outlook.com', '2026-02-02'),
+    (2, 'Jheny', 'jhenyrobloxmarreta@gmail.com', '2026-06-27'),
+    (3, 'Adilson', 'jogomaldemais@gmail.com', '2026-12-23'),
+    (4, 'Francisco', 'francisco@gmail.com', '2027-03-12');
+
+
+CREATE TABLE Filmes (
+    id_filme INT PRIMARY KEY,
+    titulo VARCHAR(50),
+    genero VARCHAR(20),
+    ano_lancamento INT,
+    classificacao_etaria VARCHAR(10)
+);
+
+INSERT INTO Filmes
+    (id_filme, titulo, genero, ano_lancamento, classificacao_etaria)
+VALUES
+    (1, 'Vingadores Doomsday', 'Ação', 2026, '16+'),
+    (2, 'A Volta dos Que Não Foram', 'Comédia', 1995, 'L'),
+    (3, 'Vingadores Doomsday', 'Ação', 2026, '16+'),
+    (4, 'Advogado do Diabo', 'Comédia', 2013, '14+'),
+    (5, 'Se Beber, Não Case', 'Comédia', 2015, 'L');
+
+
+CREATE TABLE Historico (
+    id_historico INT PRIMARY KEY,
+    id_utilizador INT,
+    id_filme INT,
+    data_assistiu DATE,
+    dispositivo VARCHAR(20),
+    FOREIGN KEY (id_utilizador)
+        REFERENCES Utilizadores(id_utilizadores),
+    FOREIGN KEY (id_filme)
+        REFERENCES Filmes(id_filme)
+);
+
+INSERT INTO Historico
+    (id_historico, id_utilizador, id_filme, data_assistiu, dispositivo)
+VALUES
+    (1, 0, 1, '2026-02-02', 'Celular'),
+    (2, 1, 2, '2026-02-02', 'PC'),
+    (3, 2, 3, '2026-06-27', 'PC'),
+    (4, 3, 4, '2026-12-23', 'PC'),
+    (5, 4, 5, '2027-03-12', 'Celular');
+
+
+SELECT * FROM Utilizadores;
+SELECT * FROM Filmes;
+SELECT * FROM Historico;
