@@ -1,0 +1,53 @@
+DROP TABLE IF EXISTS Matriculas;
+DROP TABLE IF EXISTS Curso;
+DROP TABLE IF EXISTS Alunos;
+
+CREATE TABLE Alunos (
+    id_aluno INT PRIMARY KEY,
+    nome VARCHAR(100),
+    cpf VARCHAR(14),
+    data_nasc DATE,
+    telefone VARCHAR(20)
+);
+
+INSERT INTO Alunos (id_aluno, nome, cpf, data_nasc, telefone)
+VALUES
+    (1, 'Guilherme Fonseca Ceraso Abreu Pereira', '143.686.086-58', '2009-02-04', '+55 31 99274-5310'),
+    (2, 'Arthur Jorge Guimarães', '145.216.356-14', '2010-05-25', '+55 31 8456-9632'),
+    (3, 'Caio Júlio César', '000.000.000-01', '2008-01-01', '+01 00 0000-0001');
+
+CREATE TABLE Curso (
+    id_curso INT PRIMARY KEY,
+    nome_curso VARCHAR(100),
+    carga_h VARCHAR(100),
+    valor VARCHAR(10)
+);
+
+INSERT INTO Curso (id_curso, nome_curso, carga_h, valor)
+VALUES
+    (1, 'Redes de Computadores', '20 horas semanais', 'R$120'),
+    (2, 'Medicina', '30 horas semanais', 'R$500'),
+    (3, 'Culinária', '40 horas semanais', 'R$30');
+
+CREATE TABLE Matriculas (
+    id_matricula INT PRIMARY KEY,
+    id_aluno INT,
+    id_curso INT,
+    data_mat DATE,
+    situacao VARCHAR(10),
+    FOREIGN KEY (id_aluno)
+        REFERENCES Alunos(id_aluno),
+    FOREIGN KEY (id_curso)
+        REFERENCES Curso(id_curso)
+);
+
+INSERT INTO Matriculas
+    (id_matricula, id_aluno, id_curso, data_mat, situacao)
+VALUES
+    (1, 1, 1, '2026-12-02', 'Aprovado'),
+    (2, 2, 2, '2026-02-05', 'Reprovado'),
+    (3, 3, 3, '2026-05-09', 'Aprovado');
+
+SELECT * FROM Alunos;
+SELECT * FROM Curso;
+SELECT * FROM Matriculas;
