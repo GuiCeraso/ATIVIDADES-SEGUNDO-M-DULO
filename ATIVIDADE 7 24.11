@@ -1,0 +1,28 @@
+import sqlite3
+conexao = sqlite3.connect(":memory:")
+cursor = conexao.cursor()
+cursor.execute("""
+CREATE TABLE produtos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    preco REAL NOT NULL,
+    quantidade INTEGER NOT NULL
+)
+""")
+for i in range(3):
+    print(f"\nCadastro do produto {i + 1}")
+    nome = input("Digite o nome do produto: ")
+    preco = float(input("Digite o preço do produto: "))
+    quantidade = int(input("Digite a quantidade em estoque: "))    # 4. Inserir os dados no banco de dados
+    cursor.execute("""
+    INSERT INTO produtos (nome, preco, quantidade)
+    VALUES (?, ?, ?)
+    """, (nome, preco, quantidade))
+conexao.commit()
+print("\n===== PRODUTOS CADASTRADOS =====")
+cursor.execute("SELECT * FROM produtos")
+produtos = cursor.fetchall()
+for produto in produtos:
+    print(produto)
+conexao.close()
+print("\nConexão com o banco de dados encerrada!")
