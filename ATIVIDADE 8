@@ -1,0 +1,30 @@
+import sqlite3
+conexao = sqlite3.connect(":memory:")
+cursor = conexao.cursor()
+cursor.execute("""
+CREATE TABLE servicos(
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT NOT NULL,
+  equipamento TEXT NOT NULL,
+  descricao TEXT NOT NULL,
+  preco REAL NOT NULL
+)
+""")
+for i in range(4):
+  print(f"\nCadastre o cliente{i + 1}")
+  nome = input("Digite o nome do cliente:")
+  equipamento = input("Digite o nome do equipamento:")
+  descricao = input("Dê a descrição do equipamento:")
+  preco = float(input("Digite o preço do serviço:"))
+  cursor.execute("""
+  INSERT INTO servicos(nome, equipamento, descricao, preco)
+  VALUES(?, ?, ?, ?)
+  """, (nome, equipamento, descricao, preco))
+  conexao.commit()
+print ("\n-----Clientes Cadastrados-----")
+cursor.execute("SELECT * FROM servicos")
+servicos = cursor.fetchall()
+for servico in servicos:
+  print(servico)
+conexao.close()
+print("\nConexão com o banco de dados encerrada! Obrigado!")
