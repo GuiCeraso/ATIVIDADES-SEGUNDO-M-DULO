@@ -13,7 +13,7 @@ for i in range(3):
     print(f"\nCadastro do produto {i + 1}")
     nome = input("Digite o nome do produto: ")
     preco = float(input("Digite o preço do produto: "))
-    quantidade = int(input("Digite a quantidade em estoque: "))    # 4. Inserir os dados no banco de dados
+    quantidade = int(input("Digite a quantidade em estoque: "))
     cursor.execute("""
     INSERT INTO produtos (nome, preco, quantidade)
     VALUES (?, ?, ?)
